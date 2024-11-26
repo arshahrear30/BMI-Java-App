@@ -1,63 +1,118 @@
-android:orientation="vertical"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
     android:layout_margin="20dp">
-    <TextView
-        android:layout_width="match_parent"
+
+    <soup.neumorphism.NeumorphTextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="আপনার ওজন কত?"
-        android:textSize="30sp"
+        android:textColor="@color/black"
         android:textStyle="bold"
-        />
+        android:textSize="35dp"
+        android:layout_marginLeft="20dp"/>
 
-    <EditText
-        android:id="@+id/a1weight"
+
+    <soup.neumorphism.NeumorphCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="20"
-        android:hint="Weight(KG)"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        />
+        app:neumorph_shapeType="basin"
+        android:orientation="horizontal"
+        app:neumorph_shadowColorDark="#E6DCDF"
+        app:neumorph_shadowColorLight="#8E8D88">
+        <EditText
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="weight"
+            android:inputType="numberDecimal"
+            android:padding="10dp"
+            android:layout_marginLeft="20dp"
+            />
+
+    </soup.neumorphism.NeumorphCardView>
 
 
-    <TextView
-        android:layout_width="match_parent"
+
+    <soup.neumorphism.NeumorphTextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="আপনার উচ্চতা কত?"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        android:layout_marginLeft="20dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <soup.neumorphism.NeumorphCardView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            app:neumorph_shapeType="basin"
+            android:orientation="horizontal"
+            app:neumorph_shadowColorDark="#E6DCDF"
+            app:neumorph_shadowColorLight="#8E8D88"
+            >
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="feet"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_marginLeft="20dp"
+                />
+
+        </soup.neumorphism.NeumorphCardView>
+        <soup.neumorphism.NeumorphCardView
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            app:neumorph_shapeType="basin"
+            android:orientation="horizontal"
+            app:neumorph_shadowColorDark="#E6DCDF"
+            app:neumorph_shadowColorLight="#8E8D88">
+            <EditText
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="inch"
+                android:inputType="numberDecimal"
+                android:padding="10dp"
+                android:layout_marginLeft="20dp"
+                />
+
+        </soup.neumorphism.NeumorphCardView>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
+    <soup.neumorphism.NeumorphButton
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="BMI Calculation"
         android:textSize="30sp"
         android:textStyle="bold"
-        />
+        app:neumorph_shadowColorDark="#D0C5C9"
+        app:neumorph_shadowColorLight="#B8A39C" />
 
-    <EditText
-        android:id="@+id/edname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="20"
-        android:hint="Feet"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        />
-    <EditText
-        android:id="@+id/edname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="20"
-        android:hint="Inch"
-        android:inputType="numberDecimal"
-        android:padding="10dp"
-        />
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Calculate My BMI"
-        />
-    <TextView
-        android:id="@+id/tvdisplay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-
-        />
 
 
 </LinearLayout>
