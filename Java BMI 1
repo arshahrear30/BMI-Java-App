@@ -1,6 +1,9 @@
 package com.timeforschool.bmicalculator;
 
+import static android.app.ProgressDialog.show;
+
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.view.View;
 import android.view.displayhash.VerifiedDisplayHash;
 import android.widget.Button;
@@ -21,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     EditText edweight,edfeet,edinch;
     Button edresult;
     TextView tvdisplay;
-    
+
 
 
 
@@ -49,38 +52,47 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-
-                float weight=Float.parseFloat(edweight.getText().toString());
-                float feet=Float.parseFloat(edfeet.getText().toString());
-                float inch=Float.parseFloat(edinch.getText().toString());
-                float height=(float) (feet*0.3048 + inch*0.0254);
-                float bmi=weight/(height*height);
+                if(edweight.length() >0 && edfeet.length() >0 ) {
 
 
-                String bmir;
-                if (bmi < 18.5) {
-                    bmir = "\nআপনার ওজন খুবই কম। \nআপনি পুষ্টিহীনতায় ভুগছেন। \nআপনি স্বাস্থ্যঝুঁকির মধ্যে রয়েছেন।\nআপনার উচ্চতা অনুসারে ওজন স্বাভাবিকের থেকে কম"+
-                            "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।"+
-                            "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n"+
-                            "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।";
-                } else if (bmi < 25) {
-                    bmir = "\nআপনার BMI মান নির্দেশ করছে আপনার ওজন স্বাভাবিক রয়েছে ।" +
-                    "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।"+
-                            "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n"+
-                            "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।"+"\n\n This app is made by A R Shahrear .";
-                } else if (bmi < 30) {
-                    bmir ="\nআপনার BMI মান নির্দেশ করছে, আপনার ওজন স্বাভাবিকের তুলনাই বেশি। \nআপনার ওজন কমানো উচিত।\nআপনার BMI মান স্বাভাবিকের তুলনায় বেশি। "+
-                            "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।"+
-                            "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n"+
-                            "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।";
-                } else {
-                    bmir = "\nআপনার ওজন স্বাভাবিকের তুলনাই অনেক অনেক বেশি। \nআপনার অনেক ওজন কমানো উচিত।\nআপনার স্বাস্থ্য নিয়ে আরো সচেতন হতে হবে।\nআপনার মান উচ্চ BMI  নির্দেশ করছে।" +
-                    "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।"+
-                            "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n"+
-                            "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।";
+                    float weight = Float.parseFloat(edweight.getText().toString());
+                    float feet = Float.parseFloat(edfeet.getText().toString());
+                    float inch = Float.parseFloat(edinch.getText().toString());
+                    float height = (float) (feet * 0.3048 + inch * 0.0254);
+                    float bmi = weight / (height * height);
+
+
+                    String bmir;
+                    if (bmi < 18.5) {
+                        bmir = "\nআপনার ওজন খুবই কম। \nআপনি পুষ্টিহীনতায় ভুগছেন। \nআপনি স্বাস্থ্যঝুঁকির মধ্যে রয়েছেন।\nআপনার উচ্চতা অনুসারে ওজন স্বাভাবিকের থেকে কম" +
+                                "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।" +
+                                "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n" +
+                                "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।";
+                    } else if (bmi < 25) {
+                        bmir = "\nআপনার BMI মান নির্দেশ করছে আপনার ওজন স্বাভাবিক রয়েছে ।" +
+                                "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।" +
+                                "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n" +
+                                "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।" + "\n\n This app is made by A R Shahrear .";
+                    } else if (bmi < 30) {
+                        bmir = "\nআপনার BMI মান নির্দেশ করছে, আপনার ওজন স্বাভাবিকের তুলনাই বেশি। \nআপনার ওজন কমানো উচিত।\nআপনার BMI মান স্বাভাবিকের তুলনায় বেশি। " +
+                                "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।" +
+                                "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n" +
+                                "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।";
+                    } else {
+                        bmir = "\nআপনার ওজন স্বাভাবিকের তুলনাই অনেক অনেক বেশি। \nআপনার অনেক ওজন কমানো উচিত।\nআপনার স্বাস্থ্য নিয়ে আরো সচেতন হতে হবে।\nআপনার মান উচ্চ BMI  নির্দেশ করছে।" +
+                                "\n\n\n\n\nমনে রাখবেন, উচ্চ বা নিম্ন BMI মান নির্দেশ করে, আপনি বিভিন্ন স্বাস্থ্য সমস্যার সাথে যুক্ত আছেন।" +
+                                "\nযেমন: হৃদরোগ, ডায়াবেটিস এবং কিছু ধরনের ক্যান্সার।\n" +
+                                "\nতাই প্রতিমাসে আপনার দেহের BMI মান সম্পর্কে ধারনা নেওয়া উচিত।";
+                    }
+
+                    tvdisplay.setText("\n\nআপনার BMI হলো " + bmi + "\n\n\nআপনার BMI মানের বিবরন:\n" + bmir);
+                }else{
+
+                    edweight.setError("Please enter your weight");
+                    edfeet.setError("Please enter your height in feet");
+
+
                 }
-
-                tvdisplay.setText("\n\nআপনার BMI হলো " +bmi +"\n\n\nআপনার BMI মানের বিবরন:\n"+bmir);
 
             }
         });
